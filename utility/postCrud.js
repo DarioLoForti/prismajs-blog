@@ -55,15 +55,17 @@ const updatePost = (id, data) => {
 
     prisma.post.update({
         where: {
-            id: id
+            id
         },
-        data: data,
-    }).then((post) => {
+        data
+        })
+    .then((post) => {
         console.log(post);
     }).catch((error) => {
         console.error(error);
     });
-}
+};
+
 
 const deletePost = (slug) => { 
     prisma.post.delete({
