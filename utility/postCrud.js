@@ -22,7 +22,11 @@ const createPost = (title, content, published, categoryId, tagIds) => {
 };
 
 const getAllPosts = () => {
-    prisma.post.findMany().then((posts) => {
+    prisma.post.findMany({
+        include: {
+            tags: true
+        }
+    }).then((posts) => {
         console.log(posts);
     }).catch((error) => {
         console.error(error);
@@ -33,6 +37,9 @@ const getPostBySlug = (slug) => {
      prisma.post.findUnique({
         where: {
             slug: slug
+        },
+        include: {
+            tags: true
         }
     }).then((post) => {
        console.log(post);
