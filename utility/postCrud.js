@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-const createPost = (title, content, published, categoryId) => {
+const createPost = (title, content, published, categoryId, tagIds) => {
     const slug = title.toLowerCase().split(' ').join('-');
     prisma.post.create({
         data: {
@@ -10,8 +10,10 @@ const createPost = (title, content, published, categoryId) => {
             content,
             published,
             categoryId,
+            tags: {
+                connect: tagIds.map(tagId => ({ id: tagId }))
         }
-        
+    }
     }).then(post => {
         console.log(post);
     }).catch(error => {

@@ -14,3 +14,5 @@ const {
     getPostsByContent
 } = require('./utility/postCrud.js');
 
+
+// createPost('Post 2', 'This is the second post', true, 1, [1, 3]);
