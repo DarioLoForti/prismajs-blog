@@ -3,13 +3,17 @@ const prisma = new PrismaClient();
 
 
 const createTag = (name) => {
-    return prisma.tag.create({
+    prisma.tag.create({
         data: {
             name: name,
         }
+    }).then((tag) => {
+        console.log(tag);
+    }).catch((error) => {
+        console.error(error);
     });
 }
 
-model.exports = {
+module.exports = {
     createTag
-}
+};

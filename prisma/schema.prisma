@@ -19,9 +19,9 @@ model Post {
   slug       String   @unique
   image      String?
   content    String   @db.Text
-  published  Boolean  @default(false)
+  published  Boolean  @default(true)
   category   Category @relation(fields: [categoryId], references: [id])
-  CategoryId Int
+  categoryId Int
   tags       Tag[]
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
