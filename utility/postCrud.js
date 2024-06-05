@@ -43,7 +43,7 @@ const updatePost = (id, data) => {
     if (data.title) {
         data.slug = data.title.toLowerCase().split(' ').join('-');
     }
-    
+
     prisma.post.update({
         where: {
             id: id
@@ -68,10 +68,38 @@ const deletePost = (slug) => {
     });
 }
 
+const getPublishedPosts = () => {
+    prisma.post.findMany({
+        where: {
+            published: true
+        }
+    }).then((posts) => {
+        console.log(posts);
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
+const getPostsByContent = (content) => {
+    prisma.post.findMany({
+        where: {
+            content: {
+                contains: content
+            }
+        }
+    }).then((posts) => {
+        console.log(posts);
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
 module.exports = {
     createPost,
     getAllPosts,
     getPostBySlug,
     updatePost,
-    deletePost
+    deletePost,
+    getPublishedPosts,
+    getPostsByContent
 }

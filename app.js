@@ -9,6 +9,8 @@ const {
     getAllPosts,
     getPostBySlug,
     updatePost,
-    deletePost
+    deletePost,
+    getPublishedPosts,
+    getPostsByContent
 } = require('./utility/postCrud.js');
 
