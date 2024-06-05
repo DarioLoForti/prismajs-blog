@@ -1,20 +1,11 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-const createPost = (title, content, published, categoryId, tagIds) => {
-    const slug = title.toLowerCase().split(' ').join('-');
+const createPost = (data) => {
     prisma.post.create({
-        data: {
-            title,
-            slug,
-            content,
-            published,
-            categoryId,
-            tags: {
-                connect: tagIds.map(tagId => ({ id: tagId }))
-        }
+        data
     }
-    }).then(post => {
+    ).then(post => {
         console.log(post);
     }).catch(error => {
         console.error(error);
